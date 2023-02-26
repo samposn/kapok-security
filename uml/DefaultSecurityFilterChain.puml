@@ -1,0 +1,21 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+interface SecurityFilterChain << interface >> {
+  + matches(HttpServletRequest): boolean
+  filters: List<Filter>
+}
+class DefaultSecurityFilterChain {
+  + DefaultSecurityFilterChain(RequestMatcher, List<Filter>): 
+  + DefaultSecurityFilterChain(RequestMatcher, Filter[]): 
+  + matches(HttpServletRequest): boolean
+  + toString(): String
+  requestMatcher: RequestMatcher
+  filters: List<Filter>
+}
+
+SecurityFilterChain ^-[#008200,dashed]-  DefaultSecurityFilterChain
+@enduml

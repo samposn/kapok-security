@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.security.web.SecurityFilterChain</OriginalElement>
+  <nodes>
+    <node x="-66.0" y="-86.0">org.springframework.security.web.SecurityFilterChain</node>
+    <node x="-123.0" y="51.0">org.springframework.security.web.DefaultSecurityFilterChain</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.security.web.DefaultSecurityFilterChain" target="org.springframework.security.web.SecurityFilterChain" relationship="REALIZATION">
+      <point x="0.0" y="-105.0" />
+      <point x="0.0" y="38.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.5" showDependencies="true" x="85.5" y="97.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

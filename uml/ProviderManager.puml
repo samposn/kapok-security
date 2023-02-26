@@ -1,0 +1,17 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+interface AuthenticationManager << interface >>
+interface Aware << interface >>
+interface InitializingBean << interface >>
+interface MessageSourceAware << interface >>
+class ProviderManager
+
+MessageSourceAware     -[#008200,plain]-^  Aware                 
+ProviderManager        -[#008200,dashed]-^  AuthenticationManager
+ProviderManager        -[#008200,dashed]-^  InitializingBean      
+ProviderManager        -[#008200,dashed]-^  MessageSourceAware    
+@enduml
