@@ -5,11 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 /**
  * WebSecurityConfigurer
- *
+ * <p>
+ *     想要查看加载了哪些 {@link SecurityFilterChain} 可以在
+ * {@link org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration} 中相应的方法打上断点查看。
+ * </p>
  * @author <a href="mailto:samposn@163.com">Will WM. Zhang</a>
  * @since 1.0
  */
@@ -19,39 +20,45 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
-                .httpBasic(withDefaults())
-                .formLogin(withDefaults());
+        // .authenticated() Specify that URLs are allowed by any authenticated user.
+        // .denyAll() Specify that URLs are not allowed by anyone.
+        // .permitAll() Specify that URLs are allowed by anyone.
+
+        http.authorizeHttpRequests(authorize -> authorize
+//            .requestMatchers("/").authenticated()
+            .requestMatchers("/admin/**").hasRole("ADMIN")
+//            .requestMatchers("/order").hasAuthority("order")
+            .anyRequest().permitAll()
+        ).formLogin();
 
         return http.build();
 
-//        http.authorizeRequests()
-//            .requestMatchers("/login.html", "/index").permitAll() // 放行的资源写在 anyRequest 之前
-//            .anyRequest().authenticated()
-//            .and()
-//            .formLogin()
-//            .loginPage("/login.html") // 用来指定默认登录页面，注意：一旦指定自定义登录页面之后，必须指定处理登录请求 Url
-//            .loginProcessingUrl("/doLogin") // 指定处理登录请求 Url
-//            .usernameParameter("uname")
-//            .passwordParameter("upass")
-//            // .successForwardUrl("") // 指定认证成功后 forward 的 Url ，始终在认证成功之后跳转到指定请求
-//            // .defaultSuccessUrl("") // 指定认证成功后 redirect 的 Url ，重定向到上一次访问的 Url
-//            .successHandler(null) // 指定认证成功后的处理器
-//            // .failureForwardUrl("") // 指定认证失败后 forward 的 Url
-//            // .failureUrl("") // 指定认证失败后 redirect 的 Url
-//            .failureHandler(null) // 指定认证失败之后的处理器
-//            .and()
-//            .logout()
-//            // .logoutUrl("/logout") // 指定注销登录 Url 默认请求方式必须：GET
-//            .logoutRequestMatcher(new OrRequestMatcher(
-//                new AntPathRequestMatcher("/aa", "GET"),
-//                new AntPathRequestMatcher("/bb", "POST")
-//            ))
-//            .invalidateHttpSession(true) // 默认 会话失效
-//            .clearAuthentication(true) // 默认 清除认证标记
-//            // .logoutSuccessUrl("login.html") // 注销成功之后跳转页面
-//            .logoutSuccessHandler(null) // 注销成功之后的处理器
-//            .and()
-//            .csrf().disable(); // 关闭 csrf 跨站请求保护
     }
+
+//    @Bean
+//    DataSource dataSource() {
+//        return new EmbeddedDatabaseBuilder()
+//            .setType(H2)
+//            .addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION)
+//            .build();
+//    }
+//
+//    @Bean
+//    UserDetailsManager users(DataSource dataSource) {
+//        UserDetails user = User.builder()
+//            .username("user")
+//            .password("{bcrypt}$2a$10$t2DLC0tvEhcLwWg0.9pbyOquAP2k6jffx3HQFa8aBXyhma.wqUmwG")
+//            .roles("USER")
+//            .build();
+//        UserDetails admin = User.builder()
+//            .username("admin")
+//            .password("{bcrypt}$2a$10$hp5zHvkRldpDf3fGIHZU/.2V3lUxF/HCW9laxEw7Tqt0nE8HO8Chm")
+//            .roles("USER", "ADMIN")
+//            .build();
+//        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+//        users.createUser(user);
+//        users.createUser(admin);
+//        return users;
+//    }
+
 }

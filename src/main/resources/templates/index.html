@@ -1,9 +1,18 @@
-<html xmlns:th="https://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Hello Security!</title>
 </head>
 <body>
-    <h1>Hello Security!</h1>
+    <h3>Hello Security!</h3>
     <a id="logout" th:href="@{/logout}">Log Out</a>
+
+    <h3>资源</h3>
+    <ul>
+        <li><a th:href="@{/admin/hello}">Admin</a></li>
+        <li><a th:href="@{/user/hello}">User</a></li>
+        <li><a th:href="@{/guest/hello}">Guest</a></li>
+        <li><a th:href="@{/hello}">Hello</a></li>
+    </ul>
 </body>
 </html>

@@ -1,0 +1,44 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+entity "User" as user {
+    id : Long
+    --
+    username : String
+    password : String
+}
+
+entity "Role" as role {
+    id : Long
+    --
+    rolename : String
+}
+
+entity "Permission" as permission {
+    id : Long
+    --
+    pattern : String
+}
+
+entity "UserRole" as user_role {
+    user_id : Long
+    role_id : Long
+}
+
+entity "RolePermission" as role_permission {
+    role_id : Long
+    permission_id : Long
+}
+
+user ||..|{ user_role
+
+role ||..|{ user_role
+
+role ||..|{ role_permission
+
+permission ||..|{ role_permission
+
+@enduml

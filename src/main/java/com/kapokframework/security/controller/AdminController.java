@@ -10,11 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 1.0
  */
 @RestController
-public class IndexController {
-
-    @GetMapping("index")
-    public String index() {
-        return "index";
-    }
+public class AdminController {
 
 }
