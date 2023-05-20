@@ -1,5 +1,6 @@
 package com.kapokframework.security.service;
 
+import com.kapokframework.security.entity.User;
 import com.kapokframework.security.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +25,13 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userMapper.selectUserByUsername(username);
+        User user = userMapper.selectUserByUsername(username);
+        if (user == null) {
+            user = userMapper.selectUserByEmail(username);
+        }
+        if (user == null) {
+            user = userMapper.selectUserByMobile(username);
+        }
+        return user;
     }
 }

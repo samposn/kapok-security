@@ -3,11 +3,11 @@
 /* Records of user */
 DELETE FROM user;
 INSERT INTO user
-    (id, username, password)
+    (id, username, password, email, mobile)
 VALUES
-    (1, 'admin', '{noop}123456'),
-    (2, 'zhangsan', '{noop}123456'),
-    (3, 'lisi', '{noop}123456');
+    (1, 'admin', '{bcrypt}$2a$10$pTsXkzL8u3tk.yqt4mtHSek/8F78szltCeQr1Nv0OH2ibOCfRW/N2', 'admin@abc.com', '13812345678'),
+    (2, 'zhangsan', '{bcrypt}$2a$10$MfCZSdE21ODXgcxEj6QI4O7jM2t4iHIGdcDzfXupisVWm6HjkKbhG', 'zhangsan@abc.com', '13912345678'),
+    (3, 'lisi', '{bcrypt}$2a$10$ZktAAYWA1iFOBSOnTp7bp.llhkmgcd9paFM562LFd2ve0yLcrmLkS', 'lisi@abc.com', '14012345678');
 
 
 /* Records of role */
@@ -27,7 +27,8 @@ INSERT INTO permission
 VALUES
     (1, '/admin/**'),
     (2, '/user/**'),
-    (3, '/guest/**');
+    (3, '/guest/**'),
+    (4, '/hello/**');
 
 
 /* Records of user_role */
@@ -38,8 +39,9 @@ VALUES
     (1, 1, 1),
     (2, 1, 2),
     (3, 1, 3),
-    (4, 2, 2),
-    (5, 3, 3);
+    (4, 1, 4),
+    (5, 2, 2),
+    (6, 3, 3);
 
 
 /* Records of user_role */

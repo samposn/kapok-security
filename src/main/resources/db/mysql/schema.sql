@@ -1,9 +1,12 @@
 /* User */
+DROP TABLE IF EXISTS user;
 CREATE TABLE IF NOT EXISTS user
 (
     id       BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '主键',
     username VARCHAR(255) COMMENT '账号',
-    password VARCHAR(255) COMMENT '密码'
+    password VARCHAR(255) COMMENT '密码',
+    email    VARCHAR(255) COMMENT '电子邮箱',
+    mobile   VARCHAR(255) COMMENT '手机号码'
 );
 
 /* Role */

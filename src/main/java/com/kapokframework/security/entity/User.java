@@ -1,5 +1,6 @@
 package com.kapokframework.security.entity;
 
+import com.kapokframework.security.config.RbacGrantedAuthority;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,30 +20,31 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private String password;
-    private List<Role> roles;
+    private List<RbacGrantedAuthority> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.authorities;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return true; // 尚未用到此属性，直接返回 true，表示：是否账户未过期
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return true; // 尚未用到此属性，直接返回 true，表示：账户是否未被锁定
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return true; // 尚未用到此属性，直接返回 true，表示：账户密码是否未过期
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return true; // 尚未用到些属性，直接返回 true，表示：账户是否启用
     }
+
 }

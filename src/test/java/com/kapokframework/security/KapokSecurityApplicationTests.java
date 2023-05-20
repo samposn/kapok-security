@@ -23,7 +23,7 @@ public class KapokSecurityApplicationTests {
     @Test
     public void testSelect() {
         System.out.println(("----- selectAll method test ------"));
-        User user = userMapper.selectUserByUsername("lisi");
+        User user = userMapper.selectUserByUsername("admin");
         log.info("{}", user);
     }
 
